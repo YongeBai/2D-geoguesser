@@ -2,16 +2,20 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Search
 from .forms import SearchForm
+from dotenv import load_dotenv
 import requests
 import json
+import os
 import folium
 import geocoder
 
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 # Create your views here.
 
 
 def spell_check(address='ON, Canada'):
-    api_key = 'AIzaSyD_LHCw8slH2Tiq7045sjQ8JNoxuoHyQtM'
+    api_key = API_KEY
     serviceurl = 'https://maps.googleapis.com/maps/api/geocode/json'
 
     payload = dict()
